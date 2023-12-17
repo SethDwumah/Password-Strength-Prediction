@@ -7,13 +7,18 @@
 	<h1>Password Strength Prediction Result</h1>
 	<p>The predicted password strength is: {{ prediction }}</p>
 
-	{% if prediction == 0 %}
-		<h1>Weak Password</h1>
-	{% elif prediction == 1 %}
-		<h1>Moderate Password</h1>
-	{% else %}
+
+    {% if prediction == 0 %}
+        <h1>Weak Password</h1>
+    {% elif prediction == 1 %}
+        <h1>Moderate Password</h1>
+	{% elif prediction == 2 %}
 		<h1>Strong Password</h1>
-	{% endif %}
+    {% else %}
+        <h1>Neutral</h1>
+
+    {% endif %}
+    
 	
 	<br><br>
 	<a href="/">Go to home page</a>

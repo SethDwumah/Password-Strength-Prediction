@@ -13,7 +13,7 @@ def word_to_character(inputs):
     characters = [char for char in inputs]
     return characters
 
-vectorizer = pickle.load(open('Vectorizer.pkl','rb'))
+vectorizer = pickle.load(open('tfidf_vectorizer.pkl','rb'))
 
 
 @app.route('/')
@@ -23,12 +23,13 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     password = request.form['password']
-    
+    pass_array = np.array([password])
     # Transform the password into a format that the model can use.
-    transformed_password = vectorizer.transform([password])
+    transformed_password = vectorizer.transform(pass_array)
     
     # Predict the strength of the password.
     prediction = model.predict(transformed_password)
+    
 
     # Display the prediction.
     return render_template('results.html', prediction=prediction[0])
